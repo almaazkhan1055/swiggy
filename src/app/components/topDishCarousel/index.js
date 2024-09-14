@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { FaArrowCircleLeft, FaArrowCircleRight } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
+import { FaArrowLeft } from "react-icons/fa6";
 
-const Slider = ({ sliderData }) => {
+const TopDishCarousel = ({ topDishCarouselData }) => {
   const [scrollAmount, setScrollAmount] = useState(0);
 
-  let images = sliderData?.imageGridCards?.info;
+  let data = topDishCarouselData?.imageGridCards?.info;
 
   const handleLeftScroll = () => {
     if (scrollAmount === 0) {
@@ -31,22 +33,29 @@ const Slider = ({ sliderData }) => {
   return (
     <div className="px-[190px] my-5 ">
       <div className="flex items-center justify-between">
-        <h2 className="sliderData font-[800] text-2xl">
-          {sliderData?.header?.title}
+        <h2 className="topDishCarouselData font-[800] text-2xl">
+          {topDishCarouselData?.header?.title}
         </h2>
         <div className="flex items-center gap-3">
-          <FaArrowCircleLeft
-            className={`h-[34px] w-[32px] ${
-              scrollAmount === 0 ? "text-gray-100" : "text-gray-400"
-            } cursor-pointer`}
+          <div
+            className={`rounded-full cursor-pointer p-2 ${
+              scrollAmount === 0 ? "bg-gray-100 text-gray-400" : "bg-gray-200"
+            } : "text-gray-400"`}
             onClick={handleLeftScroll}
-          />
-          <FaArrowCircleRight
-            className={`h-[34px] w-[32px] ${
-              scrollAmount === -2210 ? "text-gray-100" : "text-gray-400"
-            } cursor-pointer`}
+          >
+            <FaArrowLeft />
+          </div>
+
+          <div
+            className={`rounded-full cursor-pointer bg-gray-300 p-2 ${
+              scrollAmount === -2210
+                ? "bg-gray-100 text-gray-400"
+                : "bg-gray-200"
+            } : "text-gray-400"`}
             onClick={handleRightScroll}
-          />
+          >
+            <FaArrowRight />
+          </div>
         </div>
       </div>
 
@@ -57,8 +66,8 @@ const Slider = ({ sliderData }) => {
             transform: `translateX(${scrollAmount}px)`,
           }}
         >
-          {images &&
-            images.map((obj) => {
+          {data &&
+            data.map((obj) => {
               return (
                 <div
                   key={obj.id}
@@ -78,4 +87,4 @@ const Slider = ({ sliderData }) => {
   );
 };
 
-export default Slider;
+export default TopDishCarousel;

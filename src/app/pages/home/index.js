@@ -1,14 +1,18 @@
 "use client";
 import Header from "@/app/components/header";
-import RestrauntCard from "@/app/components/restauratntCard";
-import Slider from "@/app/components/slider";
+import Restaurants from "@/app/components/restaurants";
+import TopDishCarousel from "@/app/components/topDishCarousel";
+import TopRestaurantCarousel from "@/app/components/topRestauratntCarousel";
+
 import { useEffect, useState } from "react";
 
 export default function Home() {
   const [data, setData] = useState([]);
-  let sliderData = data?.data?.cards[0]?.card?.card;
-  let RestrauntCardData = data?.data?.cards[1]?.card?.card;
-  // console.log("RestrauntCardData", RestrauntCardData);
+  let topDishCarouselData = data?.data?.cards[0]?.card?.card;
+  let RestaurantCarouselCardData = data?.data?.cards[1]?.card?.card;
+  let RestrauntsData = data;
+
+  console.log("RestrauntsData", RestrauntsData);
 
   const fetchData = async () => {
     try {
@@ -29,8 +33,11 @@ export default function Home() {
   return (
     <>
       <Header />
-      <Slider sliderData={sliderData} />
-      <RestrauntCard RestrauntCardData={RestrauntCardData} />
+      <TopDishCarousel topDishCarouselData={topDishCarouselData} />
+      <TopRestaurantCarousel
+        RestaurantCarouselCardData={RestaurantCarouselCardData}
+      />
+      <Restaurants RestrauntsData={RestrauntsData} />
     </>
   );
 }
