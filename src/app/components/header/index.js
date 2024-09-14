@@ -141,7 +141,7 @@ const Header = () => {
       </div>
       <div className="flex items-center gap-10">
         {hyperLinks.map((link, index) => (
-          <div className="flex items-center gap-2 font-medium">
+          <div key={index} className="flex items-center gap-2 font-medium">
             <span>{link?.icon}</span>
             <span className="text-[16px] text-[#3d4152] hover:text-[#FF5E0A] cursor-pointer">
               {link?.title}
